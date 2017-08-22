@@ -22,11 +22,11 @@ import (
 	"github.com/mattermost/platform/model"
 )
 
-var IsLicensed bool = false
+var IsLicensed bool = true
 var License *model.License = &model.License{
 	Features: new(model.Features),
 }
-var ClientLicense map[string]string = map[string]string{"IsLicensed": "false"}
+var ClientLicense map[string]string = map[string]string{"IsLicensed": "true"}
 
 var publicKey []byte = []byte(`-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyZmShlU8Z8HdG0IWSZ8r
@@ -59,7 +59,7 @@ func SetLicense(license *model.License) bool {
 		return true
 	}
 
-	return false
+	return true
 }
 
 func RemoveLicense() {
@@ -162,9 +162,9 @@ func GetLicenseFileLocation(fileLocation string) string {
 func getClientLicense(l *model.License) map[string]string {
 	props := make(map[string]string)
 
-	props["IsLicensed"] = strconv.FormatBool(IsLicensed)
+	props["IsLicensed"] = strconv.FormatBool(true)
 
-	if IsLicensed {
+	if true {
 		props["Id"] = l.Id
 		props["Users"] = strconv.Itoa(*l.Features.Users)
 		props["LDAP"] = strconv.FormatBool(*l.Features.LDAP)
